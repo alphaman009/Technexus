@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TECH | NEXUS</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="Photos/Logo.png">
+
+</head>
+<body>
+    
+    <!-- NEW: Particle Background Canvas -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Header & Navigation -->
+    <header class="header">
+        <a href="#" class="logo">TECH | NEXUS</a>
+        <nav class="navbar">
+            <a href="#products">Products</a>
+            <a href="#about">About</a> <!-- This will now scroll to the footer -->
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="icons">
+            <span id="user-greeting" class="user-greeting"></span>
+            <button id="theme-toggle-btn">
+                <i class="fas fa-moon"></i><i class="fas fa-sun"></i>
+            </button>
+            <button id="wishlist-btn"><i class="fas fa-heart"></i> <span id="wishlist-count" class="count">0</span></button>
+            <button id="cart-btn"><i class="fas fa-shopping-cart"></i> <span id="cart-count" class="count">0</span></button>
+            <button id="login-btn" class="header-btn">Login</button>
+            <button id="logout-btn" class="header-btn">Logout</button>
+        </div>
+    </header>
+
+    <!-- ... (Hero & Category Bar Unchanged) ... -->
+    <section class="hero-slider">
+        <div class="slider-container" id="slider-container"></div>
+    </section>
+    <section class="category-bar">
+        <a href="#" class="category-item active" data-category="all"><i class="fas fa-grip-horizontal"></i> All Gadgets</a>
+        <a href="#" class="category-item" data-category="audio"><i class="fas fa-headphones"></i> Audio</a>
+        <a href="#" class="category-item" data-category="wearables"><i class="fas fa-watch"></i> Wearables</a>
+        <a href="#" class="category-item" data-category="drones"><i class="fas fa-paper-plane"></i> Drones</a>
+        <a href="#" class="category-item" data-category="peripherals"><i class="fas fa-keyboard"></i> Peripherals</a>
+        <a href="#" class="category-item" data-category="smart_home"><i class="fas fa-house"></i> Smart Home</a>
+    </section>
+
+    <!-- Filter Section (Unchanged) -->
+    <section class="filter-bar">
+        <div class="filter-search">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" placeholder="Search gadgets or click mic...">
+            <button id="voice-search-btn"><i class="fas fa-microphone"></i></button>
+        </div>
+        <div class="filter-price">
+            <label for="price-range">Max Price: ₹<span id="price-value">150000</span></label>
+            <input type="range" id="price-range" min="0" max="150000" value="150000">
+        </div>
+    </section>
+
+    <!-- ... (Products Section Unchanged) ... -->
+    <section class="products" id="products">
+        <h2>Gadgets for the Future 💡</h2>
+        <div class="product-grid" id="product-grid"></div>
+    </section>
+    
+    <!-- ... (Modals Unchanged) ... -->
+    <div id="modal-overlay" class="modal-overlay">
+        <!-- Wishlist Modal -->
+        <div id="wishlist-modal" class="modal-container">
+            <h3>Your Wishlist ❤️</h3>
+            <div id="wishlist-items" class="modal-list"><p class="empty-message">Your wishlist is empty.</p></div>
+            <button class="close-modal-btn">Close</button>
+        </div>
+        <!-- Cart Modal -->
+        <div id="cart-modal" class="modal-container">
+            <h3>Your Shopping Cart 🛒</h3>
+            <div id="cart-items" class="modal-list"><p class="empty-message">Your cart is empty.</p></div>
+            <div class="cart-summary">
+                <p>Total: <span id="cart-total">₹0.00</span></p>
+                <button class="checkout-btn">Checkout</button>
+            </div>
+            <button class="close-modal-btn">Close</button>
+        </div>
+        <!-- Login Modal -->
+        <div id="login-modal" class="modal-container login-modal-container">
+            <h3>Welcome Back</h3>
+            <form id="login-form">
+                <div class="form-group"><label for="email">Email</label><input type="email" id="email" placeholder="name@example.com" required></div>
+                <div class="form-group"><label for="password">Password</label><input type="password" id="password" placeholder="••••••••" required></div>
+                <button type="submit" class="login-submit-btn">Login</button>
+            </form>
+            <button class="close-modal-btn">Close</button>
+        </div>
+    </div>
+
+    <!-- ... (FAQ Section Unchanged) ... -->
+    <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+            <details class="faq-item"><summary>What are your shipping options?</summary><p>We offer standard (5-7 business days), expedited (2-3 business days), and next-day shipping. All orders over ₹5,000 qualify for free standard shipping.</p></details>
+            <details class="faq-item"><summary>What is your return policy?</summary><p>We have a 30-day hassle-free return policy. If you're not satisfied with your purchase, you can return it within 30 days for a full refund, provided it's in its original condition and packaging.</p></details>
+            <details class="faq-item"><summary>Do you offer a warranty on your gadgets?</summary><p>Yes, all our new products come with a one-year manufacturer warranty that covers defects in materials and workmanship. Refurbished items come with a 90-day warranty.</p></details>
+            <details class="faq-item"><summary>How can I track my order?</summary><p>Once your order is shipped, you will receive an email with a tracking number and a link to the carrier's website. You can also track your order status from the "My Orders" section of your account (once logged in).</p></details>
+        </div>
+    </section>
+
+    <!-- Footer (UPDATED with id="about") -->
+    <footer class="footer" id="about">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>ABOUT</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li><li><a href="#">About Us</a></li><li><a href="#">Careers</a></li><li><a href="#">Tech Nexus Stories</a></li><li><a href="#">Corporate Information</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>HELP</h4>
+                <ul>
+                    <li><a href="#">Payments</a></li><li><a href="#">Shipping</a></li><li><a href="#">Cancellation & Returns</a></li><li><a href="#">FAQ</a></li><li><a href="#">Report Infringement</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>POLICY</h4>
+                <ul>
+                    <li><a href="#">Return Policy</a></li><li><a href="#">Terms Of Use</a></li><li><a href="#">Security</a></li><li><a href="#">Privacy</a></li><li><a href="#">Sitemap</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>CONTACT US</h4>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <h4 style="margin-top: 20px;">Registered Office</h4>
+                <p>Tech Nexus Private Limited,<br>Buildings Alyssa, Begonia & Clove,<br>Outer Ring Road, Devarabeesanahalli Village,<br>Bengaluru, 560103,<br>Karnataka, India</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2025 TECH | NEXUS. All rights reserved.</p></div>
+    </footer>
+
+    <!-- ... (Chatbot Unchanged) ... -->
+    <button id="chatbot-toggle"><i class="fas fa-comment-dots"></i></button>
+    <div id="chat-popup" class="chat-popup">
+        <div class="chat-header">
+            <h3>Tech Assistant</h3>
+            <button id="chat-close-btn">&times;</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot">Hi! Ask me about tech 'news', 'tips', or 'trends'.</div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Type a message...">
+            <button id="chat-send-btn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
